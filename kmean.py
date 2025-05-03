@@ -15,7 +15,7 @@ class KMeansClustering:
         # Compute Euclidean distance between a data point and all centroids
         return np.sqrt(np.sum((centroids - data_point) ** 2, axis=1))
 
-    def fit(self, X, max_iterations=300):
+    def fit(self, X, max_iterations=400):
         # Randomly initialize centroids within the data range
         self.centroids = np.random.uniform(
             np.amin(X, axis=0), 
@@ -55,11 +55,11 @@ class KMeansClustering:
             else:
                 self.centroids = np.array(cluster_centers)  # Update centroids
 
-        return y  # Return final cluster assignments
+        return y
 # --------------------------------------------------------------------------
 
 # Load Image
-img = cv2.imread("/home/kailinazx/Documents/Computer Vision/Kmeans-Clustering-Segmentation/test-img/74.jpg")  # Use your image file path
+img = cv2.imread("/home/kailinazx/Documents/Computer Vision/Kmeans-Clustering-Segmentation/test-img/42.jpg")
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = cv2.resize(img, (300, 300))
 
@@ -67,7 +67,7 @@ img = cv2.resize(img, (300, 300))
 pixels = img.reshape((-1, 3)).astype(np.float32)
 
 # Apply Custom KMeans
-kmeans = KMeansClustering(k=5)  # You may change k based on your image
+kmeans = KMeansClustering(k=18)  #change k here
 labels = kmeans.fit(pixels)
 labels = labels.reshape((img.shape[:2]))
 
