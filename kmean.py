@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 # -------------------- Custom KMeans --------------------
 class KMeansClustering:
     def __init__(self, k=3):
-        # Number of clusters to find
         self.k = k
-        # Centroids will be initialized during fit()
         self.centroids = None
 
     @staticmethod
@@ -51,7 +49,7 @@ class KMeansClustering:
 
             # Step 4: Check for convergence (no significant change in centroids)
             if np.max(self.centroids - np.array(cluster_centers)) < 0.0001:
-                break  # Centroids are stable, stop iterating
+                break
             else:
                 self.centroids = np.array(cluster_centers)  # Update centroids
 
@@ -59,7 +57,7 @@ class KMeansClustering:
 # --------------------------------------------------------------------------
 
 # Load Image
-img = cv2.imread("/home/kailinazx/Documents/Computer Vision/Kmeans-Clustering-Segmentation/test-img/42.jpg")
+img = cv2.imread("/image.jpg")
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 img = cv2.resize(img, (300, 300))
 
